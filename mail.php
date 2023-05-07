@@ -1,14 +1,29 @@
 <?php
-    $name = $$_POST["name"];
-    $email = $$_POST["email"];
-    $subject = $$_POST["subject"];
-    $recipient = "mr.hamzh@hotmail.com";
-    $mailHeader = "From: " . $name . 
-    "\r\n Email: " . $email .
-    "\r\n subject: " . $subject . "\r\n";
+  $message_sent = false;
+  if(isset($_POST['email']) && $_POST['email'] != '') {
+    if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
-    mail($recipient, $subject, $message, $mailHeader)
-    or die("Error!");
+      $name = $_POST["name"];
+      $email = $_POST["email"];
+      $subject = $_POST["subject"];
+      $message = $_POST["message"];
+  
+      $recipient = "mr.hamzh@hotmail.com";
+      $mailHeader = "";
+  
+      $mailHeader .= "From: ".$name. "\r\n";
+      $mailHeader .= "Email: ".$email. "\r\n";
+      $mailHeader .= "Message: ".$message. "\r\n";
+  
+  
+      // mail($recipient, $subject, $message, $mailHeader)
+      // or die("Error!");
+
+      $message_sent = true;
+    }
+  }
+  
+
 
   echo'
   <!doctype html>
@@ -26,4 +41,19 @@
 <button><a href="/src/index.html">Back to Contact form page</a></button>
 </body>
 </html>';
+?>
+
+<?php 
+if($message_sent):
+?>
+
+<h1 class="text-white text-3xl mx-auto">Thank you for contact us</h1>
+<button><a href="/src/index.html">Back to Contact form page</a></button>
+
+<?php
+esle:
+?>
+
+<?php
+endif;
 ?>
