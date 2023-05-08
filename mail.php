@@ -15,8 +15,7 @@
       $mailHeader .= "Email: ".$email. "\r\n";
       $mailHeader .= "Message: ".$message. "\r\n";
   
-  
-      mail($recipient, $subject, $message, $mailHeader)
+      mail($recipient, $subject, $message, $name, $email, $mailHeader)
       or die("Error!");
 
       $message_sent = true;
@@ -26,7 +25,6 @@
 ?>
 
 <body>
-
 
 <?php 
 if($message_sent):
@@ -38,7 +36,6 @@ if($message_sent):
 <?php
 esle:
 ?>
-
 
 <?php
 endif;
