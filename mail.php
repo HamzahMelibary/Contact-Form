@@ -18,6 +18,7 @@
     'X-Mailer: PHP/' . phpversion();
   
       $recipient = "hamzah@pace.sa";
+      $recipient2 = $email;
       $body = "";
   
       $body .= "From: ".$name. "<br>";
@@ -25,6 +26,8 @@
       $body .= "Message: ".$message. "<br>";
   
       mail($recipient, $subject, $body, $headers)
+      or die("Error!");
+      mail($recipient2, $subject, $body, $headers)
       or die("Error!");
 
       $message_sent = true;
