@@ -7,15 +7,24 @@
       $email = $_POST['email'];
       $subject = $_POST['subject'];
       $message = $_POST['message'];
+      $from = 'info2@amalibary-establishment.sa';
+
+      $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+ 
+  // Create email headers
+    $headers .= 'From: '.$from."\r\n".
+    'Reply-To: '."reply@amalibary-establishment.sa"."\r\n" .
+    'X-Mailer: PHP/' . phpversion();
   
       $recipient = "hamzah@pace.sa";
-      $mailHeader = "";
+      $body = "";
   
-      $mailHeader .= "From: ".$name. "\r\n";
-      $mailHeader .= "Email: ".$email. "\r\n";
-      $mailHeader .= "Message: ".$message. "\r\n";
+      $body .= "From: ".$name. "<br>";
+      $body .= "Email: ".$email. "<br>";
+      $body .= "Message: ".$message. "<br>";
   
-      mail($recipient, $subject, $message, $name, $email, $mailHeader)
+      mail($recipient, $subject, $body, $headers)
       or die("Error!");
 
       $message_sent = true;
